@@ -1,0 +1,26 @@
+image: Ubuntu1804
+
+stack: node 12
+
+branches:
+  only:
+    - main
+
+cache:
+  - node_modules
+
+install:
+  - npm install
+
+build: off
+
+build_script:
+  - npm run build
+
+test_script:
+  - npm run lint && npm test
+
+deploy_script:
+  - ps: Install-Product node 12
+  - ps: npm install -g gh-pages
+  - ps: gh-pages -d dist
