@@ -23,3 +23,5 @@ test_script:
 deploy_script:
   - ps: npm install -g gh-pages
   - ps: gh-pages -d dist
+  - git config --global user.name "shustovskikh"
+  - git config --global user.email "python.shustovskikh@gmail.com"
