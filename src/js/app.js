@@ -1,22 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const gameBoard = document.createElement('div');
-  gameBoard.classList.add('game-board');
-  document.body.appendChild(gameBoard);
+  const gameBoard = document.querySelector('.game-board');
+  const goblin = document.querySelector('.goblin');
+  const boardSize = 4;
+  const cells = [];
 
-  const goblin = document.createElement('img');
-  goblin.src = 'img/goblin.png';
-  goblin.classList.add('goblin');
-  gameBoard.appendChild(goblin);
+  for (let i = 0; i < boardSize; i++) {
+    for (let j = 0; j < boardSize; j++) {
+      const cell = document.createElement('div');
+      cell.classList.add('cell');
+      gameBoard.appendChild(cell);
+      cells.push(cell);
+    }
+  }
 
-  const boardWidth = 4;
-  const boardHeight = 4;
-  const randomColumn = Math.floor(Math.random() * boardWidth);
-  const randomRow = Math.floor(Math.random() * boardHeight);
-  goblin.style.gridArea = `${randomRow + 1} / ${randomColumn + 1}`;
+  function getRandomIndex(excludeIndex) {
+    let index;
+    do {
+      index = Math.floor(Math.random() * cells.length);
+    } while (index === excludeIndex);
+    return index;
+  }
 
-  setInterval(() => {
-    const newColumn = Math.floor(Math.random() * boardWidth);
-    const newRow = Math.floor(Math.random() * boardHeight);
-    goblin.style.gridArea = `${newRow + 1} / ${newColumn + 1}`;
-  }, 2000);
+  function moveGoblin() {
+    const currentIndex = cells.indexOf(goblin.parentElement);
+    const newIndex = getRandomIndex(currentIndex);
+    cells[newIndex].appendChild(goblin);
+  }
+
+  moveGoblin();
+
+  setInterval(moveGoblin, 1000);
 });

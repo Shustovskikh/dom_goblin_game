@@ -1,23 +1,30 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
 .game-board {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
   gap: 10px;
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border: 2px solid #ddd;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: #8bc34a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 10px;
 }
 
 .goblin {
-  width: 100%;
-  height: auto;
-  grid-area: 1 / 1;
-  transition: grid-area 0.5s ease;
-}
-
-.goblin:hover {
-  grid-area: 4 / 4;
+  width: 80px;
+  height: 80px;
 }
